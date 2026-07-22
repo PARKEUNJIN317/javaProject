@@ -10,7 +10,7 @@ public class ForNestedEx {
 			for(int j=2; j<=9; j++) {
 				int multi=0;
 				multi = i*j;
-				System.out.print(j + "X" + i + "=" + multi + " ");
+				System.out.print(j + "X" + i + "=" + multi + "\t");
 			}
 			System.out.println();
 		}
