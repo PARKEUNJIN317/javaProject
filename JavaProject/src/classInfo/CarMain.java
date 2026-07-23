@@ -6,6 +6,8 @@ public class CarMain {
 		// 프로그램의 실행과 종료
 		// 클래스는 사용자 정의 타입 => 클래스 타입의 변수 선언이 가능하다
 		Car c1 = new Car(); // 생성자 함수 호출
+		Car c2 = new Car();
+		Car c3 = new Car();
 		
 
 	}
