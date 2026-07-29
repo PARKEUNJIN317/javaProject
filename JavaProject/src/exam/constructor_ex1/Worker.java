@@ -11,7 +11,7 @@ public class Worker {
 	
 	@Override
 	public String toString() {
-		return joominNo + "\t|" + name ;
+		return "주민번호 : " + joominNo + "\n성명 : " + name;
 	}
 
 }

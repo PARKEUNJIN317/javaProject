@@ -1,0 +1,28 @@
+package interfaceex;
+
+public class RemoteControlMain {
+
+	public static void main(String[] args) {
+		//인터페이스도 다형성 사용가능
+		//인터페이스 참조변수
+		IRemoteControl rc = null;
+		
+		//구현클래스 Television객체를 인터페이스 참조변수에 대입
+		rc = new Television();
+		rc.turnOn();
+		rc.setVolume(10);
+		rc.setMute(true);
+		rc.setMute(false);
+		rc.turnOff();
+		
+		System.out.println("-----------------------------------------")
+		//구현 클래스 Audio 객체를 인터페이스 참조 변수에 대입
+		rc = new Audio(); //다형성
+		rc.turnOn();
+		rc.setVolume(12);
+		rc.setMute(true); // 재정의한 메소드 호출
+		rc.turnOff();
+		
+		IRemoteControl.changeBattery(); //static 메소드 호출
+	}
+}
