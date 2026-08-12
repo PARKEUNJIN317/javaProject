@@ -1,28 +1,31 @@
 package bookcrud;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class BookDTO {
 
 	private String bookNo;
 	private String bookName;
+	private String bookAuthor;
 	private int bookPrice;
 	private Date bookDate;
-	private String pubNo;
-	private String bookAuthor;
 	private int bookStock;
+	private String pubNo;
 	
 	
-	public BookDTO(String bookNo, String bookName, int bookPrice, Date bookDate, String pubNo, String bookAuthor, int bookStock) {
+	
+
+	public BookDTO(String bookNo, String bookName, String bookAuthor, int bookPrice, Date bookDate,
+			int bookStock, String pubNo) {
 		this.bookNo = bookNo;
 		this.bookName = bookName;
+		this.bookAuthor = bookAuthor;
 		this.bookPrice = bookPrice;
 		this.bookDate = bookDate;
-		this.pubNo = pubNo;
-		this.bookAuthor = bookAuthor;
 		this.bookStock = bookStock;
-		
+		this.pubNo = pubNo;
 	}
+
 
 
 	public String getBookNo() {

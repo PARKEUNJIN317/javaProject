@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class BookDAO implements IBookDAO{
 
 	Connection con =null;
@@ -26,18 +27,18 @@ public class BookDAO implements IBookDAO{
 			String sql = "insert into book values(?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1,bDto.getBookNo());
-			pstmt.setString(2,bDto.getBookName());
-			pstmt.setInt(3,bDto.getBookPrice());
-			pstmt.setDate(4,new java.sql.Date(bDto.getBookDate().getTime()));
-			pstmt.setString(5,bDto.getPubNo());
-			pstmt.setString(6,bDto.getBookAuthor());
-			pstmt.setInt(7,bDto.getBookStock());
+			pstmt.setString(1,dto.getBookNo());
+			pstmt.setString(2,dto.getBookName());
+			pstmt.setString(3,dto.getBookAuthor());
+			pstmt.setInt(4,dto.getBookPrice());
+			pstmt.setDate(5,new java.sql.Date(dto.getBookDate().getTime()));
+			pstmt.setInt(6,dto.getBookStock());
+			pstmt.setString(7,dto.getPubNo());
 			
 			int result = pstmt.executeUpdate();
 			
 			if(result>0) {
-				System.out.println("도서 등록 성공");
+				System.out.println("성공 : 도서 정보가 등록되었습니다.");
 			}else {
 				System.out.println("도서 등록 실패");
 			}
@@ -60,13 +61,13 @@ public class BookDAO implements IBookDAO{
 			while(rs.next()) {
 				String bookNo = rs.getString(1);
 				String bookName = rs.getString(2);
-				int bookPrice = rs.getInt(3);
-				Date bookDate = rs.getDate(4);
-				String pubNo = rs.getString(5); 
-				String bookAuthor = rs.getString(6);	
-				int bookStock = rs.getInt(7);
-				
-				bDto = new BookDTO(bookNo, bookName, bookPrice, bookDate, pubNo, bookAuthor,bookStock);
+				String bookAuthor = rs.getString(3);
+				int bookPrice = rs.getInt(4);
+				Date bookDate = rs.getDate(5);
+				int bookStock = rs.getInt(6);
+				String pubNo = rs.getString(7); 
+					
+				bDto = new BookDTO(bookNo, bookName, bookAuthor, bookPrice, bookDate, bookStock, pubNo);
 				bookList.add(bDto);
 			}
 			
@@ -86,19 +87,19 @@ public class BookDAO implements IBookDAO{
 		try {
 			String sql = "select * from book where bookName=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(2, bookName);
+			pstmt.setString(1, bookName);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				String bookNo = rs.getString(1);
 				bookName = rs.getString(2);
-				int bookPrice = rs.getInt(3);
-				Date bookDate = rs.getDate(4);
-				String pubNo = rs.getString(5); 
-				String bookAuthor = rs.getString(6);	
-				int bookStock = rs.getInt(7);
-				
-				bDto = new BookDTO(bookNo, bookName, bookPrice, bookDate, pubNo, bookAuthor,bookStock);
+				String bookAuthor = rs.getString(3);
+				int bookPrice = rs.getInt(4);
+				Date bookDate = rs.getDate(5);
+				int bookStock = rs.getInt(6);
+				String pubNo = rs.getString(7); 
+					
+				bDto = new BookDTO(bookNo, bookName, bookAuthor, bookPrice, bookDate, bookStock, pubNo);
 				bookList.add(bDto);
 			}
 			
@@ -117,18 +118,19 @@ public class BookDAO implements IBookDAO{
 		try {
 			String sql = "select * from book B inner join publisher P on B.pubNo=P.pubNo where P.pubName=?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pubName);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				String bookNo = rs.getString(1);
 				String bookName = rs.getString(2);
-				int bookPrice = rs.getInt(3);
-				Date bookDate = rs.getDate(4);
-				String pubNo = rs.getString(5); 
-				String bookAuthor = rs.getString(6);	
-				int bookStock = rs.getInt(7);
-				
-				bDto = new BookDTO(bookNo, bookName, bookPrice, bookDate, pubNo, bookAuthor,bookStock);
+				String bookAuthor = rs.getString(3);
+				int bookPrice = rs.getInt(4);
+				Date bookDate = rs.getDate(5);
+				int bookStock = rs.getInt(6);
+				String pubNo = rs.getString(7); 
+					
+				bDto = new BookDTO(bookNo, bookName, bookAuthor, bookPrice, bookDate, bookStock, pubNo);
 				bookList.add(bDto);
 			}
 			
@@ -149,19 +151,19 @@ public class BookDAO implements IBookDAO{
 		try {
 			String sql = "select * from book where bookAuthor=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(6,bookAuthor);
+			pstmt.setString(1,bookAuthor);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				String bookNo = rs.getString(1);
 				String bookName = rs.getString(2);
-				int bookPrice = rs.getInt(3);
-				Date bookDate = rs.getDate(4);
-				String pubNo = rs.getString(5); 
-				bookAuthor = rs.getString(6);	
-				int bookStock = rs.getInt(7);
-				
-				bDto = new BookDTO(bookNo, bookName, bookPrice, bookDate, pubNo, bookAuthor,bookStock);
+				bookAuthor = rs.getString(3);
+				int bookPrice = rs.getInt(4);
+				Date bookDate = rs.getDate(5);
+				int bookStock = rs.getInt(6);
+				String pubNo = rs.getString(7); 
+					
+				bDto = new BookDTO(bookNo, bookName, bookAuthor, bookPrice, bookDate, bookStock, pubNo);
 				bookList.add(bDto);
 			}
 			
@@ -178,20 +180,21 @@ public class BookDAO implements IBookDAO{
 	@Override
 	public void updateBook(BookDTO dto) {
 		try {
-			String sql = "update book set bookName=?, bookPrice=?, bookDate=?, pubNo=?, bookauthor=?, bookStock=?";
+			String sql = "update book set bookName=?, bookPrice=?, bookDate=?, pubNo=?, bookauthor=?, bookStock=? where bookNo=?";
 			pstmt =con.prepareStatement(sql);
 			
-			pstmt.setString(7,bDto.getBookNo());
-			pstmt.setString(1,bDto.getBookName());
-			pstmt.setInt(2,bDto.getBookPrice());
-			pstmt.setDate(3,new java.sql.Date(bDto.getBookDate().getTime()));
-			pstmt.setString(4,bDto.getPubNo());
-			pstmt.setString(5,bDto.getBookAuthor());
-			pstmt.setInt(6,bDto.getBookStock());
+			 pstmt.setString(1, dto.getBookName());
+		     pstmt.setInt(2, dto.getBookPrice());
+		     pstmt.setDate(3,new java.sql.Date(dto.getBookDate().getTime()));
+		     pstmt.setString(4, dto.getPubNo());
+		     pstmt.setString(5, dto.getBookAuthor());
+		     pstmt.setInt(6, dto.getBookStock());
+		   	 pstmt.setString(7, dto.getBookNo());
+
 			
 			pstmt.executeUpdate();
 			
-			System.out.println("도서 수정 성공");
+			System.out.println("성공 : 도서정보를 수정하였습니다. 도서 정보 조회에서 확인하세요");
 			
 			
 		}catch(SQLException e) {
@@ -211,7 +214,7 @@ public class BookDAO implements IBookDAO{
 			pstmt.setString(1, bookNo);
 			
 			pstmt.executeUpdate();
-			System.out.println(bookNo + "도서 data 삭제 성공");
+			System.out.println("성공"+ bookNo + "도서를 삭제 하였습니다. 도서 정보 조회에서 확인하세요");
 			
 		}catch(SQLException e) {
 			System.out.println("삭제 오류 발생");
@@ -220,6 +223,37 @@ public class BookDAO implements IBookDAO{
 			DBConn.close(pstmt);
 		}
 		
+	}
+	
+	public BookDTO detailBook(String bookNo) {
+		try {
+			
+		String sql = "select * from book where bookNo=?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, bookNo);
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			bookNo = rs.getString(1);
+			String bookName = rs.getString(2);
+			String bookAuthor = rs.getString(3);
+			int bookPrice = rs.getInt(4);
+			Date bookDate = rs.getDate(5);
+			int bookStock = rs.getInt(6);
+			String pubNo = rs.getString(7); 
+			
+			bDto = new BookDTO(bookNo, bookName, bookAuthor, bookPrice, bookDate, bookStock, pubNo);
+			
+		}else {
+			bDto=null;
+		}			
+	}catch(SQLException e) {
+		System.out.println("오류발생");
+		e.printStackTrace();
+	}finally {
+		DBConn.close(pstmt, rs);
+	}
+	return bDto;
 	}
 
 	

@@ -18,4 +18,6 @@ public interface IBookDAO {
 	
 	public void deleteBook(String bookNo);
 
+	public BookDTO detailBook(String bookNo);
+
 }
