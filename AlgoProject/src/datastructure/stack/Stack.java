@@ -81,15 +81,17 @@ public class Stack {
 	 }
 	 
 	 ///////////////////////////////////////////
-	 ///연습문제풀이
+	 ///연습문제
 	 ///
 	 
-	 public void size() {
+	 public int size() {
 		 //stack의 data수 return
+		 return top +1;
 	 }
 	 																																																																																																																		
-	 public void getCapacity() {
+	 public int getCapacity() {
 		 //전체 stack 용량 return
+		 return stackSize;
 	 }
 	 
 }

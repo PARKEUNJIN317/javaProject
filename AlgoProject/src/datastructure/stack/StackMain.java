@@ -48,6 +48,11 @@ public class StackMain {
 		 stk.push('h');
 		 stk.showStack();
 		 
+		 System.out.println("\n현재 스택 data 수 : " + stk.size());
+		 System.out.println("\n스택 용량 : " + stk.getCapacity());
+		 
+		 System.out.println("스택에서 pop 한 data : " + stk.pop());
+		 
 		 
 		 
 		 
