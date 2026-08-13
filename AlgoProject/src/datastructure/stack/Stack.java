@@ -11,7 +11,7 @@ public class Stack {
 	// 배열 index는 0부터 시작하므로 top은 -1로 초기값 설정
 	public Stack(int stackSize) {
 		this.stackSize=stackSize;
-		this.top = 1;
+		this.top = -1;
 		this.stackArr = new char[stackSize];
 	}
 	
@@ -93,6 +93,33 @@ public class Stack {
 		 //전체 stack 용량 return
 		 return stackSize;
 	 }
+	 
+	 
+	 public static boolean isBr(String str) {
+		 Stack s = new Stack(str.length());
+		 
+		 for(int i=0;i<str.length(); i++) {
+			 char ch = str.charAt(i);
+			 
+			 if(ch == '(' || ch =='{' || ch =='[') {
+				 s.push(ch);
+			 }
+			 else if(ch ==')'||ch=='}'||ch==']') {
+				 if(s.isEmpty()) {
+					 return false;
+				 }
+				 char open = s.pop();
+				 
+				 if(ch ==')' && open != '(') return false;
+				 if(ch =='}' && open != '{') return false;
+				 if(ch ==']' && open != '[') return false;
+			 }
+		 }
+		 
+		 return s.isEmpty();
+		 
+	 }
+	 
 	 
 }
 
