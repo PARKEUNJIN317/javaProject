@@ -3,9 +3,9 @@ package datastructure.stack;
 //배열을 활용한 Stack구현
 //Char형 data를 저장하는 Stack
 public class Stack {
-	private int stackSize;
+	private int stackSize; //스택 크기
 	private int top; // 스택포인터
-	private char[] stackArr; //스택
+	private char[] stackArr; //스택 -> char형만 처리 가능
 	
 	//생성자 : 스택초기화
 	// 배열 index는 0부터 시작하므로 top은 -1로 초기값 설정
