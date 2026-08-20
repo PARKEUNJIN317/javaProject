@@ -1,4 +1,4 @@
-package datastructure.tree.binarysearch;
+package exam.finalalgoex;
 
 import java.util.Comparator;
 
@@ -311,6 +311,10 @@ public class BinarySearchTree<E> {
 	public void clear() {
 		size = 0;
 		root = null;
+	}
+	
+	public Node<E> getRoot() {
+		return root;
 	}
 	
 	/*
