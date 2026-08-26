@@ -21,7 +21,7 @@ public class MergeSort { // 정렬을 위한 공간이 하나 더 필요한 정�
 		//분할하고 결합하는 과정을 반복
 		int mid = (left + right)/2; //절반위치
 		mergeSort(a, left, mid);
-		mergeSort(a,mid+1, right);
+		mergeSort(a, mid+1, right);
 		
 		merge(a,left,mid,right);//병합작업 메소드 호출
 	}
@@ -82,5 +82,9 @@ public class MergeSort { // 정렬을 위한 공간이 하나 더 필요한 정�
 		/*
 		 * 임시배열에 정렬된 결과를 기존의 배열에 복사하여 옮겨준다
 		 */
+		
+		for(int i=left ; i<= right; i++) {
+			a[i] = sorted[i];
+		}
 	}
 }

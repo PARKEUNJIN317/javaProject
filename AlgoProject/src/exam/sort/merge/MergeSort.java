@@ -85,5 +85,8 @@ public class MergeSort { // 정렬을 위한 공간이 하나 더 필요한 정�
 		/*
 		 * 임시배열에 정렬된 결과를 기존의 배열에 복사하여 옮겨준다
 		 */
+		for(int i=left ; i<= right; i++) {
+			a[i] = sorted[i];
+		}
 	}
 }
