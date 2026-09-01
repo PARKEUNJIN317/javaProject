@@ -13,9 +13,9 @@
 	</jsp:useBean>
 	
 	<h3>Bean 속성 값 출력</h3>
-	아이디 : <%= member.getId() %>
+	아이디 : <jsp:getProperty property="id" name="member"/><%= member.getId() %>
 	비밀번호 : <%= member.getPwd() %><br>
-	성명 : <%= member.getName() %><br>
+	성명 : ${member.name}<%= member.getName() %><br>
 	이메일 : <%= member.getEmail() %>
 	
 	
