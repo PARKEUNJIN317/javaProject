@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>includ 지시어 : bottom</title>
+		<title>include 지시어 : bottom</title>
 	</head>
 	<body>
 		<font color="green">
