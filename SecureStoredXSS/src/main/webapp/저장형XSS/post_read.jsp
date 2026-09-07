@@ -2,6 +2,8 @@
 <%@page import="java.sql.PreparedStatement" %>
 <%@page import="java.sql.DriverManager" %>
 <%@page import="java.sql.Connection" %>
+<%@page import="java.util.HashMap" %>
+<%@page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -23,42 +25,52 @@
 			request.setCharacterEncoding("utf-8");
 			String num = request.getParameter("num");
 			
-			String query = "SELECT * FROM pratice_board where num=" + num;
+			String query = "SELECT * FROM pratice_board where num=?";
 			
 			PreparedStatement pstmt = con.prepareStatement(query);
 			ResultSet result = pstmt.executeQuery();
+			
+			Map<String, Object> board = new HashMap<String, Object>();
+			if(result.next()) {
+				board.put("num", result.getInt("num"));
+				board.put("writer", result.getString("writer"));
+				board.put("title", result.getString("title"));
+				board.put("content", result.getString("content"));
+				board.put("regdate", result.getTimestamp("regdate"));
+			}
+			request.setAttribute("board", board);
 	%>
 
 	<table border="1">
-		<% while(result.next()) {%>
+		
 			<tr>
 				<td>번호</td>
 				<td>
-					<%=result.getInt("num") %>
+					<c:out value="${board.num}"/>
 				</td>
 			</tr>
 			<tr>
 				<td>작성일</td>
 				<td>
-					<%=result.getTimestamp("regdate") %>
+					<c:out value="${board.regdate}"/>
 				</td>
 			</tr>
 			<tr>
 				<td>작성자</td>
 				<td>
-					<%=result.getString("writer") %>
+					<c:out value="${board.writer}"/>
 				</td>
 			</tr>
 			<tr>
 				<td>제목</td>
 				<td>
-					<%=result.getString("title") %>
+					<c:out value="${board.title}"/>
 				</td>
 			</tr>
 			<tr>
 				<td>내용</td>
 				<td>
-					<%=result.getString("content") %>
+					<c:out value="${board.content}"/>
 				</td>
 			</tr>
 			<tr>
@@ -66,7 +78,7 @@
 					<button type=button onclick="location.href='post_list.jsp'">목록으로</button>
 				</td>
 			</tr>
-			<% }%>
+		
 	</table>
 	<% } catch (Exception ex) { out.println("오류가 발생했습니다. 오류 메시지 : " + ex.getMessage());
     }%>

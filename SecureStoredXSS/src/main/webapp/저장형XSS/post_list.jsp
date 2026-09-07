@@ -2,6 +2,10 @@
 <%@page import="java.sql.Connection"%>
 <%@page import= "java.sql.PreparedStatement"%>
 <%@page import= "java.sql.ResultSet"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -23,7 +27,18 @@
 			
 			String query = "SELECT * FROM pratice_board order by num desc";
 			PreparedStatement pstmt = con.prepareStatement(query);
-			ResultSet result = pstmt.executeQuery();		
+			ResultSet result = pstmt.executeQuery();	
+			
+			List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
+			while(result.next()) {
+				Map<String, Object> row = new HashMap<String, Object>();
+				row.put("num", result.getInt("num"));
+				row.put("writer", result.getString("writer"));
+				row.put("title", result.getString("title"));
+				row.put("regdate", result.getTimestamp("regdate"));
+				boardList.add(row);
+			}
+			request.setAttribute("boardList", boardList);
 		%>
 
 			<table border="1">
@@ -45,30 +60,28 @@
 					<td>작성일</td>
 					<td>관리</td>
 				</tr>
-				<% 
-					while(result.next())
-					{%>
+				<c:forEach var="board" items="${boardList}">
 						<tr>
 							<td>
-								<%=result.getInt("num") %>
+								<c:out value="${board.num}"/>
 							</td>
 							<td>
-								<%=result.getString("writer")%>
+								<c:out value="${board.writer}"/>
 							</td>
-							<td><a href="post_read.jsp?num=<%=result.getInt("num")%>">
-									<%=result.getString("title") %>
+							<td><a href="post_read.jsp?num=${board.num}">
+									<c:out value="${board.title}"/>
 								</a></td>
 							<td>
-								<%=result.getTimestamp("regdate") %>
+								<c:out value="${board.redgdate}"/>
 							</td>
 							<td>
 								<button type="button" value="수정"
-									onClick="location.href='post_modify.jsp?num=<%=result.getString("num") %>'">수정</button>
+									onClick="location.href='post_modify.jsp?num=${board.num}'">수정</button>
 								<button type="button" value="삭제"
-									onClick="location.href='post_delete_send.jsp?num=<%=result.getString("num") %>'">삭제</button>
+									onClick="location.href='post_delete_send.jsp?num=${board.num}'">삭제</button>
 							</td>
 						</tr>
-					<% }%>
+					</c:forEach>
 			</table>
 			<% } catch (Exception ex) { 
 					out.println("오류가 발생했습니다. 오류 메시지 : " + ex.getMessage());				

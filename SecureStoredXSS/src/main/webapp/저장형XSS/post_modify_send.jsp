@@ -29,13 +29,14 @@ try
  	
  	while(result.next())
  	{
-        insertQuery = "UPDATE pratice_board set title=?, writer=?, content=? WHERE num=" + num;
+        insertQuery = "UPDATE pratice_board set title=?, writer=?, content=? WHERE num=?";
  	    
  	    psmt = connection.prepareStatement(insertQuery);
         
         psmt.setString(1, title);
         psmt.setString(2, writer);
         psmt.setString(3, content);
+        psmt.setString(4, num);
         
         psmt.executeUpdate();
         
