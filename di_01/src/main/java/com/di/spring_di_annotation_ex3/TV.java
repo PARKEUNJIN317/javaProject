@@ -1,17 +1,18 @@
 package com.di.spring_di_annotation_ex3;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TV {
-	Speaker speaker;
 	
 	@Autowired
-	public void setSpeaker(Speaker speaker) {
-		this.speaker = speaker;
-	}
+	private Speaker speaker;
+	
 	public void volumeUp() {
 		speaker.volumeUp();
 	}
+	
 	public void volumDown() {
 		speaker.volumeDown();
 	}
