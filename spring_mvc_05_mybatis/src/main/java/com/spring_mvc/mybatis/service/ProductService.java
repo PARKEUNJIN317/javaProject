@@ -16,7 +16,26 @@ public class ProductService implements IProductService{
 	@Autowired
 	@Qualifier("IProductDAO")
 	IProductDAO dao;
+
+	@Override
+	public String prdNoCheck(String prdNo) {
+		String res = dao.prdNoCheck(prdNo);
+		String result ="available";
+		if(res!=null) {
+			result="no_available";
+		}
+		return result;
+	}
 	
+	
+
+	@Override
+	public ArrayList<ProductDTO> productSearch(HashMap<String,Object> map) {
+		return dao.;
+	}
+
+
+
 	@Override
 	public void insertProduct(ProductDTO prdDto) {
 		dao.insertProduct(prdDto);

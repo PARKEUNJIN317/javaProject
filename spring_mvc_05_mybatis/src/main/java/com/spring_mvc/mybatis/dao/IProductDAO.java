@@ -1,6 +1,8 @@
 package com.spring_mvc.mybatis.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.spring_mvc.mybatis.dto.ProductDTO;
 
 public interface IProductDAO {
@@ -9,4 +11,6 @@ public interface IProductDAO {
 	void deleteProduct(String prdNo);
 	ArrayList<ProductDTO> listAllProduct();
 	ProductDTO detailViewProduct(String prdNo);
+	String prdNoCheck(String prdNo);
+	ArrayList<ProductDTO> productSearch(HashMap<String, Object> map);//상품검색
 }

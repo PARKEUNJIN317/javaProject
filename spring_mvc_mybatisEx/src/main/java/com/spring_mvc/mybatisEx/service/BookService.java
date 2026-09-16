@@ -14,6 +14,18 @@ public class BookService implements IBookService{
 	@Qualifier("IBookDAO")
 	IBookDAO dao;
 	
+	
+	
+	@Override
+	public String bookNoCheck(String bookNo) {
+		String res = dao.bookNoCheck(bookNo);
+		String result ="available";
+		if(res!=null) {
+			result="no_available";
+		}
+		return result;
+	}
+
 	@Override
 	public void insertBook(BookVO bookVo) {
 		dao.insertBook(bookVo);

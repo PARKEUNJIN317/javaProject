@@ -15,6 +15,8 @@ public class BookVO {
 	private String pubNo;
 	
 	
+	
+	
 	public String getBookNo() {
 		return bookNo;
 	}
