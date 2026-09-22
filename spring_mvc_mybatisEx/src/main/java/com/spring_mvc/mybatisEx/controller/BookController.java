@@ -28,7 +28,7 @@ public class BookController {
 	@RequestMapping("/book/listAllBook")
 	public String listAllBook(Model model) {
 		ArrayList<BookVO> bookList = service.listAllBook();
-		model.addAttribute("bookList",bookList);
+		model.addAttribute("book",bookList);
 		return "book/bookListView";
 	}
 	
@@ -86,6 +86,38 @@ public class BookController {
 		 String result = service.bookNoCheck(bookNo);
 		 System.out.println(result);
 		 return result;
+	 }
+	 
+	 
+	 //도서 검색 폼 요청
+	 @RequestMapping("/book/bookSearchForm1")
+	 public String viewBookSearchForm1() {
+		 return "book/bookSearchForm1";
+	 }
+	 
+	 @ResponseBody
+	 @RequestMapping("/book/bookSearch1")
+	 public ArrayList<BookVO> bookSearch1(@RequestParam HashMap<String, Object> map){
+		 ArrayList<BookVO> prdList = service.bookSearch(map);
+		 return prdList;
+	 }
+	 
+		 @RequestMapping("/book/bookSearchForm2")
+		 public String viewProductSearchForm2() {
+			 return "product/productSearchForm2";
+		 }
+	 
+	 @RequestMapping("/book/bookSearch2")
+	 public String bookSearch2(@RequestParam HashMap<String, Object> map, Model model){
+		 ArrayList<BookVO> bookList = service.bookSearch(map);
+		 model.addAttribute("book", bookList);
+		 return "book/bookSearchResultView";
+	 }
+	 
+	 
+	 @RequestMapping("book/bookSearchForm3")
+	 public String viewBookSearchForm3() {
+		 return "book/bookSearchForm3";
 	 }
 	
 

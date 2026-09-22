@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"">
+<title>Main</title>
+</head>
+<body>
+	INDEX<br>
+	
+	이미지 경로 : 스프링부트의 자원 기본경로는 src/main/resources/static으로 설정되어있음 <br>
+	<img src="/image/apple.png"><br>
+
+	<h3>Mybatis 사용 DB 연동</h3>
+	<h4>상품 관리 시스템<img src="<c:url value='/resources/image/apple.png'/>"/></h4>
+	<br>
+	<a href="<c:url value='/product/listAllProduct'/>">전체상품조회</a><br>
+	<a href="<c:url value='/product/newProductForm'/>">상품 등록</a><br>
+	<a href="<c:url value='/product/productSearchForm1'/>">상품 검색1</a><br>
+	<a href="<c:url value='/product/productSearchForm2'/>">상품 검색2</a><br>
+	<a href="<c:url value='/product/productSearchForm3'/>">상품 검색3</a><br>
+	
+	<br>
+	<h4>파일 업로드/다운로드</h4>
+	<a href="<c:url value='/fileUploadForm'/>">파일 업로드</a><br>
+	<a href="<c:url value='/fileDownloadList'/>">파일 다운로드</a><br>
+	<a href="<c:url value='/imageFileUploadForm'/>">비동기 파일 업로드</a><br>
+	
+	
+	
+	<br>
+	
+	<h4>Ajax 연습</h4>
+	<a href="<c:url value='/loginForm'/>">로그인</a>
+	<a href="<c:url value='/loginForm2'/>">로그인2</a>
+</body>
+</html>

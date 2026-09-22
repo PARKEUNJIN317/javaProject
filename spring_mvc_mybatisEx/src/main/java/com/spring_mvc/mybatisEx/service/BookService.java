@@ -1,6 +1,7 @@
 package com.spring_mvc.mybatisEx.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,8 +15,12 @@ public class BookService implements IBookService{
 	@Qualifier("IBookDAO")
 	IBookDAO dao;
 	
-	
-	
+
+	@Override
+	public ArrayList<BookVO> bookSearch(HashMap<String, Object> map) {
+		return dao.bookSearch(map);
+	}
+
 	@Override
 	public String bookNoCheck(String bookNo) {
 		String res = dao.bookNoCheck(bookNo);

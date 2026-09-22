@@ -21,11 +21,11 @@
 				<tr><td>가격</td>
 					<td><input type="text" name="bookPrice" value="${book.bookPrice }"></td></tr>
 				<tr><td>출간일 </td> 
-					<td><input type="text" name="bookDate" value="<fmt:formatDate value='${book.bookDate }' pattern='YYYY-MM-DD'/>"></td></tr>
+					<td><input type="text" name="bookDate" value="<fmt:formatDate value='${book.bookDate }' pattern='yyyy-MM-dd'/>"></td></tr>
 				<tr><td>재고</td> 
-					<td><input type="text" name="bookStock" vlaue="${book.bookStock }" ></td></tr>
+					<td><input type="text" name="bookStock" value="${book.bookStock }" ></td></tr>
 				<tr><td>출판사번호</td> 
-					<td><input type="text" name="pubNo" vlaue="${book.pubNo }" ></td></tr>
+					<td><input type="text" name="pubNo" value="${book.pubNo }" ></td></tr>
 				<tr><td colspan="2"><input type="submit" value="수정">
 				<input type="reset" value="취소"></td></tr>
 			</table>

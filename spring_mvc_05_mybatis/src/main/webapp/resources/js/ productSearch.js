@@ -27,7 +27,7 @@ $(document).ready(function(){
 					'<th>제조사</th><th>재고</th><th>제조일</th><th>사진</th></tr>'
 				);
 				
-				if(result=""){//검색결과가 없는 경우
+				if(result==""){//검색결과가 없는 경우
 					$('#resultTable').append('<tr align="center"><td colspan="7">찾는 상품이 없습니다</td></tr>');
 				}else{
 					console.log(result);
