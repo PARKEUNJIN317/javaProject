@@ -3,8 +3,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
         	<header>
         		<div id="headerBox">
-	            	<div id="logoBox"><a href="<c:url value='/'/>"><img src="image/logo.png" id="logoImg"></a></div>
-					<div id="topMenuBox">로그인 이벤트 장바구니 고객센터 회원가입</div>
+	            	<div id="logoBox"><a href="<c:url value='/'/>">
+	            	<img src="<c:url value='image/logo.png'/>" id="logoImg"></a></div>
+					<div id="topMenuBox">
+					<!-- 로그인 되지 않은 경우 -->
+					<c:if test="${empty sessionScope.sid}">
+						<a href="<c:url value='/member/loginForm'/>">로그인</a>
+						<a href="<c:url value='/member/joinForm'/>">회원가입</a>
+					</c:if>
+					
+					<!-- 로그인 된 경우 -->
+					<c:if test="${not empty sessionScope.sid}">
+					${sessionScope.sid }님 환영합니다
+						<a href="<c:url value='/member/logout'/>">로그아웃</a>
+						<a href="<c:url value='/product/event'/>">이벤트</a>
+						<a href="<c:url value='/product/cartList'/>">장바구니</a>
+						<a href="<c:url value='/member/myPage'/>">마이페이지</a>
+					</c:if>
+					</div>
             	</div>
             </header>
             <nav>  <!-- 메뉴영역 -->          
@@ -21,10 +37,10 @@
                 <div id="subMenuBox">
                 	<div class="subMenuItem" id="subMenuItem1">
 						<ul>
-							<li><a href="#">subMenuItem1-1</a></li>
-							<li><a href="#">subMenuItem1-2</a></li>
-							<li><a href="#">subMenuItem1-3</a></li>
-							<li><a href="#">subMenuItem1-4</a></li>
+							<li><a href="<c:url value='/product/productListCtg/${1}'/>">노트북</a></li>
+							<li><a href="<c:url value='/product/productListCtg/${2}'/>">프린터</a></li>
+							<li><a href="<c:url value='/product/productListCtg/${3}'/>">마우스</a></li>
+							<li><a href="<c:url value='/product/productListCtg/${4}'/>">키보드</a></li>
 						</ul>
 					</div>
 					<div class="subMenuItem" id="subMenuItem2">
