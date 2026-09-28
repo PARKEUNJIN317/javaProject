@@ -21,8 +21,8 @@
 		SELECT * FROM product WHERE ctgId=#{ctgId} ORDER BY prdNo
 	</select>
 	
-	<!-- 상품상세정보조회 -->
-	<select id="detailViewProduct" parameterType="string" resultMap="prdResult">
+	<!-- 상품 상세정보 조회 : ProductDTO detailViewProduct(String prdNo) -->
+	<select id="detailViewProduct" parameterType="string" resultType="com.spring_boot.projectEx.dto.ProductDTO">
 		SELECT * FROM product WHERE prdNo=#{prdNo}
 	</select>
 	

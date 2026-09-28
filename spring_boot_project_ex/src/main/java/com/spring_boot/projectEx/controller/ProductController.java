@@ -27,7 +27,7 @@ public class ProductController {
 	
 	//상품 상세정보 조회 요청 처리 완성 -> view까지 모두 구성
 	//레코드 컬럼 모두 표현되도록 구성 이미지 크기는 구별 가능하도록 설정
-	@GetMapping("/product/productDetail/{prdNo}")
+	@GetMapping("/product/detailViewProduct/{prdNo}")
 	public String detailViewProduct(@PathVariable String prdNo, Model model) {
 		ProductDTO prd = service.detailViewProduct(prdNo);
 		model.addAttribute("prd",prd);

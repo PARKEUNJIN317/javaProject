@@ -20,14 +20,19 @@
 			<form method="post" action="<c:url value='/product/insertCart'/>"> 
 				<table border="1" width="900">
 						<tr><td rowspan="9"><img src="<c:url value='/prd_images/${prd.prdImg}'/>" width="300" height="250"></td></tr>
-						<tr><td>상품번호 </td>
-								<td>
-						<tr><td>상품명  </td><td></td></tr>
+						<tr><td>상품번호 </td><td>
+						<input type="hidden" name="prdNo" value="${prd.prdNo }">
+						${prd.prdNo}</td></tr>
+						
+						<tr><td>상품명  </td><td>${prd.prdName}</td></tr>
 						<tr><td>가격  </td>
-							<td><span id="price" data-price=" ">
-									</span> 원</td></tr>
-						<tr><td>제조회사 </td><td> </td></tr>
-						<tr><td>상품설명 </td><td> </td></tr>
+							<td><span id="price" data-price="${prd.prdPrice}" ><!-- 구매예정금액 계산을 위한 data설정 -->
+										<fmt:formatNumber value="${prd.prdPrice}" pattern="#,###" /></span> 원</td></tr>
+						<tr><td>제조회사 </td><td>${prd.prdCompany}</td></tr>
+						<tr><td>상품설명 </td><td>${prd.prdDescript}</td></tr>
+						<tr><td>상품재고 </td>
+							<td id="stock" data-stock="${prd.prdStock}">${prd.prdStock}</td></tr>
+						
 						<tr><td>주문수량</td>
 							<td>
 								<input type="button" id="minusBtn" value="-"> 
@@ -40,8 +45,15 @@
 								</td></tr>
 						<tr><td colspan="2">
 						       <!-- 로그인 하지 않은 경우에는 [로그인] 버튼  -->
-
-
+						       <c:if test="${empty sessionScope.sid }">
+						       	<button><a href="<c:url value='/member/loginForm'/>">로그인</a></button>
+						       </c:if>
+						       
+							   <!-- 로그인 한 경우에는 [주문하기][장바구니] 버튼  -->
+							   <c:if test="${not empty sessionScope.sid }">
+							   		<input type="submit" id="insertCart" value="장바구니">
+							   		<input type="submit" id="insertOrder" value="주문하기">
+						       </c:if>
 
 										
 						       </td></tr>
@@ -49,7 +61,7 @@
 				</form>	
 				
 				<br><br>
-				<a href="<c:url value='/product/productCtgList/${prd.ctgId}'/>"><button>상품 목록 보기</button></a>
+				<a href="<c:url value='/product/productListCtg/${prd.ctgId}'/>"><button>상품 목록 보기</button></a>
 				
 				
 			 <!--  bottom -->         
