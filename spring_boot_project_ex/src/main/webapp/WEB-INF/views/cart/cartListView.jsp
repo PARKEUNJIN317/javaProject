@@ -31,7 +31,7 @@
 						<th>구매예정금액</th>						
 					</tr>
 					<c:forEach var="prd" items="${cartList }">
-			            <tr>
+			            <tr >
 			              <td><input type="checkbox" class="chkDelete" value="${prd.cartNo}"></td>
 			               <td><img src="<c:url value='/prd_images/${prd.prdImg}' />" width="30" height="20"></td>			              
 			               <td>${prd.prdName }</td>
@@ -45,8 +45,8 @@
 			               </td>
 			               <td align="right">
 						<!--금액 계산 로직 추가-->
-			               		<span class="amount" data-amount="${prd.prdPrice * prd.cartQty}"> 
-			               			<c:set var="amount" value="${prd.prdPrice * prd.cartQty}"/>
+			               		<span class="amount" data-amount="${prd.prdPrice * prd.cartQty}">
+			               			<c:set var="amount" value="${prd.prdPrice * prd.cartQty}"/> 
 			               			<c:set var="sum" value="${sum+amount}"/>
 			               			<fmt:formatNumber value="${amount}" pattern="#,###"/>
 			               		</span> 원
@@ -57,8 +57,8 @@
 			         		<td align="right">
 			         			<span id="total">
 			         				<!--총 구매예정금액 표시-->
-			         				<fmt:formatNumber value="${sum}" pattern="#,###"/>
-			         				</span> 원</td>
+			         				<fmt:formatNumber value="${sum}" pattern="#,###"/> 	
+			         			</span> 원</td>
 			         </tr>
 				</table><br><br>
 				
